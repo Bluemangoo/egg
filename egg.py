@@ -356,7 +356,7 @@ def egg_analyse():
     print(lang["egg.leaderboard"])
     high_five = get_high_five()
     for i in range(len(high_five)):
-        print(lang["egg.leaderboard.item"] % (i, high_five[i][0], high_five[i][1]))
+        print(lang["egg.leaderboard.item"] % (i+1, high_five[i][0], high_five[i][1]))
     print()
 
 
