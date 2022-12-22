@@ -3,14 +3,14 @@
 @Date: 2022.05
 @Copyright: 2022 Bluemangoo. All rights reserved.
 @Description: A game
-@version: 1.1.3 alpha
+@version: 1.1.3 release
 """
 import math
 import os
 import random
 
-VERSION = "1.1.3 alpha"
-VERSION_DATE = "2022.6.4"
+VERSION = "1.1.3 release"
+VERSION_DATE = "2022.12.22"
 DATA_COMPATIBLE_LATEST = [1, 1, 3]
 
 DEBUG = False
@@ -127,9 +127,9 @@ def input_window(*args, **kwargs):
     return input(*args, **kwargs)
 
 
-def print_debug(line, *args, start='', sep=' ', end='\n', file=None):
+def print_debug(*args, line=-1, start='', sep='', end='\n', file=None):
     if DEBUG:
-        print(start, "DEBUG#{}: ".format(line), *args, sep=sep, end=end, file=file)
+        print(start, "DEBUG#", line, ": ", *args, sep=sep, end=end, file=file)
 
 
 def cls():
@@ -198,7 +198,6 @@ def initialize_version():
                     break
                 if ver_in_file[i] > DATA_COMPATIBLE_LATEST[i]:
                     break
-                print()
             if not compatible:
                 backup_path = PATH + 'backup/' + ver_in_file_str + '/'
                 try:
@@ -356,7 +355,7 @@ def egg_analyse():
     print(lang["egg.leaderboard"])
     high_five = get_high_five()
     for i in range(len(high_five)):
-        print(lang["egg.leaderboard.item"] % (i+1, high_five[i][0], high_five[i][1]))
+        print(lang["egg.leaderboard.item"] % (i + 1, high_five[i][0], high_five[i][1]))
     print()
 
 
@@ -379,7 +378,7 @@ def game():
     high: bool = False
 
     print_window(lang["game.intro"] % (floor_all, egg_all))
-    print_debug(floor_break, end='\n\n')
+    print_debug(floor_break, line=381, end='\n\n')
     while True:
         guess = input_window(lang["game.get_floor"] % floor_all)
         if guess == "h" or guess == "help":
@@ -441,7 +440,7 @@ def game():
         print_window(lang["game.win"])
 
         high_five = get_high_five()
-        print_debug(436, high_five, end='\n\n')
+        print_debug(high_five, line=443, end='\n\n')
         high_five = high_five_sort(high_five)
         if len(high_five) < 5:
             high = True
